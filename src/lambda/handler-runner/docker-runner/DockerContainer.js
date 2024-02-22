@@ -356,7 +356,7 @@ export default class DockerContainer {
         : res.text())
 
       log.error(
-        "[DockerContainer.js.request] fetch Response body: ",
+        "[DockerContainer.js.request] fetch failed - Response body: ",
         responseBody,
       )
       throw new Error(`Failed to fetch from ${url} with ${res.statusText}`)
