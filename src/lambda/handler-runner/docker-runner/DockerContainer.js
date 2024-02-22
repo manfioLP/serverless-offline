@@ -346,7 +346,19 @@ export default class DockerContainer {
       method: "post",
     })
 
+    const contentType = res.headers.get("Content-Type")
+    log.debug("[DockerContainer.js.request] event received: ", event)
+
     if (!res.ok) {
+      const responseBody = await (contentType &&
+      contentType.includes("application/json")
+        ? res.json()
+        : res.text())
+
+      log.error(
+        "[DockerContainer.js.request] fetch Response body: ",
+        responseBody,
+      )
       throw new Error(`Failed to fetch from ${url} with ${res.statusText}`)
     }
 

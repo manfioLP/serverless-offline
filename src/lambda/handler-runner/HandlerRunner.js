@@ -45,6 +45,8 @@ export default class HandlerRunner {
         readOnly: this.#options.dockerReadOnly,
       }
 
+      log.debug("#loadRunner() [useDocker] - dockerOptions: ", dockerOptions)
+
       const { default: DockerRunner } = await import("./docker-runner/index.js")
 
       return new DockerRunner(this.#funOptions, this.#env, dockerOptions)
